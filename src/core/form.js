@@ -47,7 +47,6 @@ function setError($control) {
 
   let error = ''
 
-  console.log($control.value)
 
   if ($control.name === "fulltext" && $control.value === '' && $control.value.trim() === '') {
     error = '<p class="validation-error">Поле обязательно для заполнения</p>'

@@ -2,6 +2,8 @@ import { Component } from "../core/component"
 import { apiService } from "../services/api.service"
 import { TransportService } from "../services/transform.service"
 import { renderPost } from "../../templates/render.template"
+import { renderModal } from "../../templates/renderModal.template"
+import { EditPostComponent } from "./editPost.component"
 
 export class PostsComponent extends Component {
   constructor(id, { loader }) {
@@ -11,7 +13,6 @@ export class PostsComponent extends Component {
 
   init() {
     this.$el.addEventListener("click", btnHandler.bind(this))
-    console.log(this.$el)
   }
 
   async onShow() {
@@ -37,13 +38,16 @@ export class PostsComponent extends Component {
   }
 }
 
+
 async function btnHandler(event) {
   const $el = event.target
   const id = $el.dataset.id
   const title = $el.dataset.name
-  const post = { id, title }
+  const modal = $el.dataset.attr
+  const fulltext = $el.dataset.fulltext
+  const post = { id, title, fulltext }
 
-  if (post.id && title) {
+  if (post.id && title && !modal) {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || []
 
     if (favorites.some((favorite) => favorite.id === post.id)) {
@@ -55,7 +59,7 @@ async function btnHandler(event) {
     }
 
     localStorage.setItem("favorites", JSON.stringify(favorites))
-  } else if (post.id && !title) {
+  } else if (post.id && !title && !modal) {
     let result = confirm("Удалить запись?")
 
     let favorites = JSON.parse(localStorage.getItem("favorites")) || []
@@ -67,7 +71,7 @@ async function btnHandler(event) {
         favorites = favorites.filter((item) => item.id !== post.id)
         localStorage.setItem("favorites", JSON.stringify(favorites))
       }
-    
+
       this.loader.show()
       await apiService.deletePostById(post.id)
 
@@ -83,6 +87,15 @@ async function btnHandler(event) {
         return this.$el.insertAdjacentHTML("afterbegin", `<p class="center">Постов пока еще нет</p>`)
       }
     }
+  }
 
+  if (modal) {
+    let html = renderModal(post)
+    this.$el.insertAdjacentHTML('afterbegin', html)
+    new EditPostComponent('save-changes-btn', post.id)
+
+  } else if ($el.classList.contains('btn-close-modal')) {
+    event.preventDefault()
+    $el.closest('.custom-modal').classList.add('hide')
   }
 }

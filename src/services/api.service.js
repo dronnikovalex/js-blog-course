@@ -48,6 +48,18 @@ class ApiService {
     }
   }
 
+  async editPost(post, id) {
+    try {
+      const request = new Request(this.url + '/posts/' + id + '.json', {
+        method: 'put',
+        body: JSON.stringify(post)
+      })
+      return useRequest(request)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
 }
 
 async function useRequest(request) {

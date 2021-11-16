@@ -10,7 +10,10 @@ export function renderPost(post, options = {}) {
     return `
     <div class="panel">
       <div class="panel-head">
-        <p class="panel-title">${post.title}</p>
+        <div class="wrapper">
+          <p class="panel-title">${post.title}</p>
+          <button id="open-modal" class="btn-edit" data-attr="js-modal" data-name="${post.title}" data-fulltext="${post.fulltext}" data-id="${post.id}"><i class="fa fa-edit" style="pointer-events:none"></i></button>
+        </div>
         <ul class="tags">
           ${tag}
           ${ options.withButton ? button : '' }

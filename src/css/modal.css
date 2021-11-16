@@ -1,0 +1,37 @@
+.custom-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 10rem;
+}
+
+.custom-modal-body{
+  width: 600px;
+  height: 480px;
+  background: #fff;
+  padding: 2rem;
+}
+
+.btn-close-modal {
+  color: #f44336;
+  margin-top: 20px;
+}
+
+.btn-save-modal {
+  color: #fff;
+  margin-top: 20px;
+  background-color: #4caf50;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
