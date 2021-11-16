@@ -37,6 +37,17 @@ class ApiService {
     }
   }
 
+  async deletePostById(post) {
+    try {
+      const request = new Request(this.url + '/posts/' + post + '.json', {
+        method: 'delete'
+      })
+      return useRequest(request)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
 }
 
 async function useRequest(request) {
