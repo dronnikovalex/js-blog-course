@@ -33,11 +33,23 @@ async function linkClickhandler(event) {
 
     const postId = event.target.dataset.id
     const post = await apiService.fetchPostsById(postId)
+    Object.defineProperty(post, 'id', { value: postId })
+    console.log(post)
   
 
     this.loader.hide()
 
-    this.$el.insertAdjacentHTML('afterbegin', renderPost(post, {withButton : false}))
+    this.$el.insertAdjacentHTML('afterbegin', renderPost(post, {withButton : true, deleteButton: false}))
+  } else if (event.target.classList.contains('btn-favourite-remove')) {
+    const id = event.target.dataset.id
+
+    let favoriteList = JSON.parse(localStorage.getItem("favorites")) || []
+    favoriteList = favoriteList.filter((item) => item.id !== id)
+    localStorage.setItem("favorites", JSON.stringify(favoriteList))
+   
+    this.$el.innerHTML = ''
+    const html = renderList(favoriteList)
+    this.$el.insertAdjacentHTML('afterbegin', html)
   }
 }
 

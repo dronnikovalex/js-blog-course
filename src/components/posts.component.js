@@ -27,7 +27,7 @@ export class PostsComponent extends Component {
     }
     const posts = TransportService.fbObjectToArray(fbData)
     const html = posts
-      .map((post) => renderPost(post, { withButton: true }))
+      .map((post) => renderPost(post, {withButton : true, deleteButton: true}))
       .join(" ")
     this.loader.hide()
     this.$el.insertAdjacentHTML("afterbegin", html)
@@ -81,7 +81,7 @@ async function btnHandler(event) {
 
       if (data) {
         const posts = TransportService.fbObjectToArray(data)
-        const html = posts.map((post) => renderPost(post, { withButton: true })).join(" ")
+        const html = posts.map((post) => renderPost(post, {withButton : true, deleteButton: true})).join(" ")
         this.$el.insertAdjacentHTML("afterbegin", html)
       } else {
         return this.$el.insertAdjacentHTML("afterbegin", `<p class="center">Постов пока еще нет</p>`)

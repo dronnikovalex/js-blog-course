@@ -12,7 +12,7 @@ export function renderPost(post, options = {}) {
       <div class="panel-head">
         <div class="wrapper">
           <p class="panel-title">${post.title}</p>
-          <button id="open-modal" class="btn-edit" data-attr="js-modal" data-name="${post.title}" data-fulltext="${post.fulltext}" data-id="${post.id}"><i class="fa fa-edit" style="pointer-events:none"></i></button>
+          ${ options.withButton ? `<button id="open-modal" class="btn-edit" data-attr="js-modal" data-name="${post.title}" data-fulltext="${post.fulltext}" data-id="${post.id}"><i class="fa fa-edit" style="pointer-events:none"></i></button>` : '' }
         </div>
         <ul class="tags">
           ${tag}
@@ -24,7 +24,7 @@ export function renderPost(post, options = {}) {
       </div>
       <div class="panel-footer w-panel-footer">
         <small>${post.date}</small>
-        <button class="button-round button-small button-danger" data-id="${post.id}">Удалить запись</button>
+        ${ options.deleteButton ? `<button class="button-round button-small button-danger" data-id="${post.id}">Удалить запись</button>` : '' }
       </div>
     </div>
   `

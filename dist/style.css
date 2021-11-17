@@ -1,3 +1,41 @@
+.custom-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 10rem;
+}
+
+.custom-modal-body{
+  width: 600px;
+  height: 480px;
+  background: #fff;
+  padding: 2rem;
+}
+
+.btn-close-modal {
+  color: #f44336;
+  margin-top: 20px;
+}
+
+.btn-save-modal {
+  color: #fff;
+  margin-top: 20px;
+  background-color: #4caf50;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
 .hide {
   display: none !important;
 }
@@ -67,6 +105,10 @@ textarea {
   text-align: center;
 }
 
+.tag {
+  background-color: #4caf50 !important;
+}
+
 .btn-favourite {
   display: flex;
   align-items: center;
@@ -86,3 +128,21 @@ textarea {
 .btn-favourite-remove {
   background-color: #f44336;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  justify-content: center;
+}
+
+.btn-edit {
+  border: none;
+  font-size: 23px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  padding-top: 4px;
+  color: #747070;
+}
+
+
